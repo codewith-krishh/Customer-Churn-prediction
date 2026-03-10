@@ -169,4 +169,5 @@ notebook/churn_analysis.ipynb
 
 ## Author
 Created by: **Krish**
+
 Machine Learning Projects Portfolio
