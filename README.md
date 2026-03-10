@@ -1,4 +1,4 @@
-# Customer Churn Prediction (Machine Learning)
+# Customer Churn Prediction using Scikit-Learn Pipelines
 
 This project predicts whether a telecom customer will churn using historical customer data.
 
@@ -39,9 +39,35 @@ Contains customer information such as:
 3. Exploratory Data Analysis (EDA)
 4. Feature Encoding
 5. Train/Test Split
-6. Model Training
+6. Model Training (with sklearn Pipeline)
 7. Cross Validation
-8. Model Comparison
+8. Hyperparameter Tuning (GridSearchCV)
+9. Final Evaluation + Feature Importance
+
+---
+
+## ML Pipeline
+
+The model is trained using a Scikit-Learn Pipeline to ensure consistent preprocessing and avoid data leakage.
+
+Pipeline steps:
+
+1. Numeric features → StandardScaler
+2. Categorical features → OneHotEncoder
+3. Model → Logistic Regression
+
+This ensures preprocessing occurs inside cross-validation and hyperparameter tuning.
+
+--- 
+
+## Cross Validation
+
+5-fold cross validation was used to verify model stability.
+
+Mean Recall: 0.75  
+Standard Deviation: 0.007
+
+Low variance indicates the model performs consistently across different data splits.
 
 ---
 
@@ -55,19 +81,16 @@ Baseline interpretable model.
 Handled class imbalance using:
 class_weight='balanced'
 
-
-### Random Forest
-Non-linear ensemble model.
-
 ---
 
 ## Model Performance
 
-| Model | Accuracy | Recall (Churn) | Precision | F1 |
-|------|------|------|------|------|
-| Logistic Regression | 0.81 | 0.56 | 0.66 | 0.61 |
-| Balanced Logistic | 0.74 | **0.78** | 0.51 | **0.61** |
-| Random Forest | 0.79 | 0.50 | 0.62 | 0.55 |
+| Metric | Score |
+|--------|-------|
+| Accuracy | 0.74 |
+| Precision | 0.50 |
+| Recall (Churn) | **0.78** |
+| F1 Score | 0.61 |
 
 ---
 
@@ -78,6 +101,24 @@ Balanced Logistic Regression significantly improved **recall for churn customers
 Recall increased from **0.56 → 0.78**, meaning the model detects more customers likely to leave.
 
 This is important because missing churn customers can directly impact revenue.
+
+---
+## Feature Importance
+
+The logistic regression coefficients show which factors increase or decrease the likelihood of customer churn.
+
+Red bars indicate factors that increase churn risk, while blue bars reduce churn risk.
+
+![alt text](image.png)
+
+### Top Churn Drivers (from coefficients)
+
+| Factor | Effect |
+|--------|--------|
+| Month-to-month contract | Increases churn risk |
+| Fiber optic internet | Increases churn risk |
+| Long tenure | Reduces churn risk |
+| Two-year contract | Reduces churn risk |
 
 ---
 
@@ -91,28 +132,15 @@ This is important because missing churn customers can directly impact revenue.
 
 ---
 
-## Next Improvements 
-
-To make this project closer to an industry ML workflow:
-
-- Implement full **ML pipeline**
-- Apply **GridSearchCV** for hyperparameter tuning
-- Add **ROC-AUC evaluation**
-- Analyze **feature importance**
-- Improve model evaluation metrics
-
----
-
 ## Project Structure
-
 ```
 customer-churn-ml/
 │
 ├── dataset/
-│ └── Telco-Customer-Churn.csv
+│   └── Telco-Customer-Churn.csv
 │
 ├── notebook/
-│ └── churn_analysis.ipynb
+│   └── churn_analysis.ipynb
 │
 ├── requirements.txt
 │
@@ -123,5 +151,22 @@ customer-churn-ml/
 
 ---
 
-## 📎 Author
+## How to Run
+
+Clone the repository
+
+git clone https://github.com/codewith-krishh/customer-churn-ml.git
+
+Install dependencies
+
+pip install -r requirements.txt
+
+Run the notebook
+
+notebook/churn_analysis.ipynb
+
+---
+
+## Author
 Created by: **Krish**
+Machine Learning Projects Portfolio
