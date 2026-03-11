@@ -109,7 +109,7 @@ The logistic regression coefficients show which factors increase or decrease the
 
 Red bars indicate factors that increase churn risk, while blue bars reduce churn risk.
 
-![alt text](image.png)
+![alt text](feature_importance.png)
 
 ### Top Churn Drivers (from coefficients)
 
